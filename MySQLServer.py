@@ -1,3 +1,4 @@
+
 import mysql.connector
 from mysql.connector import errorcode
 
@@ -14,8 +15,8 @@ def create_database():
     try:
         conn = mysql.connector.connect(
             host="localhost",
-            user="root",     # Replace with your MySQL username
-            password="1372Clara"  # Replace with your MySQL password, ensuring no leading/trailing spaces
+            user="root",
+            password="1372Clara"  
         )
         cursor = conn.cursor()
         
@@ -35,8 +36,9 @@ def create_database():
             print(f"Connection failed: {err}")
     finally:
         # Close the cursor and connection
-        if conn.is_connected():
+        if 'cursor' in locals() and cursor:
             cursor.close()
+        if 'conn' in locals() and conn.is_connected():
             conn.close()
             print("Connection closed.")
 
