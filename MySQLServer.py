@@ -5,12 +5,17 @@ def create_database():
     # Define the database name
     database_name = "alx_book_store"
     
+    # Validate database name is not empty
+    if not database_name.strip():
+        print("Error: Database name cannot be empty.")
+        return
+    
     # Connect to the MySQL server
     try:
         conn = mysql.connector.connect(
             host="localhost",
             user="root",     # Replace with your MySQL username
-            password="1372Clara"  # Replace with your MySQL password
+            password="1372Clara"  # Replace with your MySQL password, ensuring no leading/trailing spaces
         )
         cursor = conn.cursor()
         
