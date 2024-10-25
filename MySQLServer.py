@@ -2,14 +2,12 @@ import mysql.connector
 from mysql.connector import errorcode
 
 def create_database():
-    # Define the database name
     database_name = "alx_book_store"
 
     if not database_name.strip():
         print("Error: Database name cannot be empty.")
         return
 
-    # Connect to the MySQL server
     try:
         conn = mysql.connector.connect(
             host="localhost",
@@ -18,7 +16,6 @@ def create_database():
         )
         cursor = conn.cursor()
 
-        # Attempt to create the database
         try:
             cursor.execute(f"CREATE DATABASE IF NOT EXISTS {database_name}")
             print(f"Database '{database_name}' created successfully!")
@@ -33,9 +30,9 @@ def create_database():
         else:
             print(f"Connection failed: {err}")
     finally:
-        # Close the cursor and connection
-        if conn.is_connected():
+        if 'cursor' in locals() and cursor is not None:
             cursor.close()
+        if 'conn' in locals() and conn.is_connected():
             conn.close()
             print("Connection closed.")
 
